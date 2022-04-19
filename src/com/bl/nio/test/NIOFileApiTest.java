@@ -1,4 +1,4 @@
-package com.bl.employee.payroll.test;
+package com.bl.nio.test;
 
 import static org.junit.Assert.assertTrue;
 
@@ -10,13 +10,15 @@ import java.util.stream.IntStream;
 
 import org.junit.Test;
 
+import com.bl.nio.watchservice.Java8WatchServiceExample;
+
 public class NIOFileApiTest {
 
 	public static String DIR_D = "D:";
 
 	public static String PLAY_WITH_NIO = "TempDir";
 
-	@Test
+//	@Test
 	public void testFileExist() throws IOException {
 		Path dirPath = Paths.get(DIR_D);
 
@@ -104,4 +106,19 @@ public class NIOFileApiTest {
 			e.printStackTrace();
 		}
 	}
+
+	@Test
+	public void givenDirectoryWithWatchService()
+			throws IOException {
+		Path playPath = Paths
+				.get(DIR_D + "/" + PLAY_WITH_NIO);
+
+		/*
+		 * try { Files.list(playPath) .forEach(System.out::println); } catch
+		 * (IOException e) { // TODO Auto-generated catch block e.printStackTrace(); }
+		 */
+
+		new Java8WatchServiceExample(playPath).processEvents();
+	}
+
 }
